@@ -1,0 +1,8 @@
+out/
+
+#visual studio
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
