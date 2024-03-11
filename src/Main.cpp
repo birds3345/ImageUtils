@@ -73,6 +73,7 @@ int main(int argc, const char* argv[])
 	{
 		std::cout << "imagebleed -in (input file) -out (output file)" << std::endl;
 		std::cout << "removetransparency -in (input file) -out (output file)" << std::endl;
+		std::cout << "monochrome -in (input file) -out (output file)" << std::endl;
 
 		return 0;
 	}
@@ -111,7 +112,7 @@ int main(int argc, const char* argv[])
 
 	if (stbi_failure_reason())
 	{
-		std::cout << stbi_failure_reason() << std::endl;
+		std::cout << "failed to load: " << stbi_failure_reason() << std::endl;
 
 		return 0;
 	}
@@ -124,6 +125,9 @@ int main(int argc, const char* argv[])
 	else if (std::strcmp(argv[1], "removetransparency") == 0)
 		output = ImageUtils::removeTransparency(width, height, image);
 	
+	else if (std::strcmp(argv[1], "monochrome") == 0)
+		output = ImageUtils::monochrome(width, height, image);
+
 	else
 	{
 		std::cout << argv[1] << " is not a valid command" << std::endl;
@@ -132,6 +136,13 @@ int main(int argc, const char* argv[])
 	}
 
 	stbi_write_png(outputFile.c_str(), width, height, 4, output, width * 4);
+	
+	if (stbi_failure_reason())
+	{
+		std::cout << "failed to write: " << stbi_failure_reason() << std::endl;
+
+		return 0;
+	}
 
 	delete[] output;
 	STBI_FREE(image);
