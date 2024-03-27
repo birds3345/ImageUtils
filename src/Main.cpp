@@ -54,7 +54,7 @@ int main(int argc, const char* argv[])
 				return 0;
 			}
 
-			args[arg.substr(1)] = { Arg::Type::Arg, std::string(argv[i + 1])};
+			args[arg.substr(1)] = { Arg::Type::Arg, std::string(argv[i + 1]) };
 		}
 		else
 		{
