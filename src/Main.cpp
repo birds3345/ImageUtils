@@ -35,16 +35,9 @@ int main(int argc, const char* argv[])
 		return 0;
 	}
 
-	if (std::string(argv[1]).starts_with("-"))
-	{
-		std::cout << "you must specify a command" << std::endl;
-
-		return 0;
-	}
-
 	std::unordered_map<std::string, Arg> args;
 
-	for (int i = 1; i < argc; i++)
+	for (int i = 0; i < argc; i++)
 	{
 		std::string arg(argv[i]);
 
@@ -74,6 +67,13 @@ int main(int argc, const char* argv[])
 		std::cout << "imagebleed -in (input file) -out (output file)" << std::endl;
 		std::cout << "removetransparency -in (input file) -out (output file)" << std::endl;
 		std::cout << "monochrome -in (input file) -out (output file)" << std::endl;
+
+		return 0;
+	}
+
+	if (std::string(argv[1]).starts_with("-"))
+	{
+		std::cout << "you must specify a command" << std::endl;
 
 		return 0;
 	}
