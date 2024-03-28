@@ -101,7 +101,7 @@ int main(int argc, const char* argv[])
 			return 0;
 		}
 
-		outputFile = inputFile.substr(0, last) + "_out.png";
+		outputFile = IMAGEUTILS_REQUIRES("overwrite", Flag) ? inputFile : inputFile.substr(0, last) + "_out.png";
 	}
 
 	int width;
